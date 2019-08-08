@@ -1,6 +1,6 @@
 import React from "react";
 import TimerForm, { TimerFormAction } from "./TimerForm";
-import Timer from "./Timer";
+import TimerComponent from "./TimerComponent";
 
 interface Props {
     timer: Timer;
@@ -19,7 +19,7 @@ class EditableTimer extends React.Component<Props, State> {
 
     render() {
         if (this.state.editing) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} onFormSubmit={this.handleFormUpdate} onFormCancel={this.handleFormCancel} />;
-        else return <Timer timer={this.props.timer} onEditClick={this.handleEditClick} onDeleteClick={this.handleDeleteClick} />;
+        else return <TimerComponent timer={this.props.timer} onEditClick={this.handleEditClick} onDeleteClick={this.handleDeleteClick} />;
     }
 
     handleFormUpdate = (title: string, project: string) => {
