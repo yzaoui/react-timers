@@ -2,9 +2,10 @@ import React from 'react';
 
 interface Props {
     timer: Timer;
+    onEditClick: () => void;
 }
 
-const Timer: React.FC<Props> = ({ timer }) => (
+const Timer: React.FC<Props> = ({ timer, onEditClick }) => (
     <div className="ui centered card">
         <div className="content">
             <div className="header">{timer.title}</div>
@@ -12,13 +13,13 @@ const Timer: React.FC<Props> = ({ timer }) => (
             <div className="center aligned description">
                 <h2>{millisecondsToHourMinuteSecond(timer.elapsedms)}</h2>
             </div>
-            <div className="extra content">
-                <span className="right floated edit icon">
+            <div className="extra content ui icon buttons right floated">
+                <button className="right floated icon compact ui basic button grey" onClick={onEditClick}>
                     <i className="edit icon" />
-                </span>
-                <span className="right floated trash icon">
+                </button>
+                <button className="right floated icon compact ui basic button red">
                     <i className="trash icon" />
-                </span>
+                </button>
             </div>
         </div>
         <div className="ui bottom attached blue basic button">
