@@ -16,9 +16,17 @@ class EditableTimer extends React.Component<Props, State> {
     };
 
     render() {
-        if (this.state.editing) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} />;
+        if (this.state.editing) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} onFormSubmit={this.onFormUpdate} onFormCancel={this.onFormCancel} />;
         else return <Timer timer={this.props.timer} />;
     }
+
+    onFormUpdate = () => {
+        //TODO
+    };
+
+    onFormCancel = () => {
+        //TODO
+    };
 }
 
 export default EditableTimer;

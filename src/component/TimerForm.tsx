@@ -7,6 +7,8 @@ export enum TimerFormAction {
 interface Props {
     timer?: Timer;
     action: TimerFormAction;
+    onFormSubmit: (title: string, project: string) => void;
+    onFormCancel: () => void;
 }
 
 interface State {
@@ -26,28 +28,28 @@ class TimerForm extends React.Component<Props, State> {
                 <div className="ui form">
                     <div className="field">
                         <label>Title</label>
-                        <input type="text" value={this.state.title} onChange={this.onTitleChange} />
+                        <input type="text" value={this.state.title} onChange={this.handleTitleChange} />
                     </div>
                     <div className="field">
                         <label>Project</label>
-                        <input type="text" value={this.state.project} onChange={this.onProjectChange} />
+                        <input type="text" value={this.state.project} onChange={this.handleProjectChange} />
                     </div>
                     <div className="ui two bottom attached buttons">
-                        <button className="ui basic blue button">{actionToString(this.props.action)}</button>
-                        <button className="ui basic red button">Cancel</button>
+                        <button className="ui basic blue button" onClick={this.handleSubmitClick}>{actionToString(this.props.action)}</button>
+                        <button className="ui basic red button" onClick={this.handleCancelClick}>Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
     }
 
-    onTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        this.setState({ title: e.target.value || "" })
-    };
+    handleTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => this.setState({ title: e.target.value || "" });
 
-    onProjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        this.setState({ project: e.target.value || "" })
-    };
+    handleProjectChange: ChangeEventHandler<HTMLInputElement> = (e) => this.setState({ project: e.target.value || "" });
+
+    handleSubmitClick = () => this.props.onFormSubmit(this.state.title, this.state.project);
+
+    handleCancelClick = () => this.props.onFormCancel();
 }
 
 const actionToString = (action: TimerFormAction) => {

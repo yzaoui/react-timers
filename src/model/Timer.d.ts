@@ -1,5 +1,5 @@
 interface Timer {
-    id: number;
+    id: string;
     title: string;
     project: string;
     elapsedms: number;
