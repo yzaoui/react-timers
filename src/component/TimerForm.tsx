@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 export enum TimerFormAction {
     Create, Update
@@ -26,11 +26,11 @@ class TimerForm extends React.Component<Props, State> {
                 <div className="ui form">
                     <div className="field">
                         <label>Title</label>
-                        <input type="text" value={this.state.title} />
+                        <input type="text" value={this.state.title} onChange={this.onTitleChange} />
                     </div>
                     <div className="field">
                         <label>Project</label>
-                        <input type="text" value={this.state.project} />
+                        <input type="text" value={this.state.project} onChange={this.onProjectChange} />
                     </div>
                     <div className="ui two bottom attached buttons">
                         <button className="ui basic blue button">{actionToString(this.props.action)}</button>
@@ -40,6 +40,14 @@ class TimerForm extends React.Component<Props, State> {
             </div>
         </div>
     }
+
+    onTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        this.setState({ title: e.target.value || "" })
+    };
+
+    onProjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        this.setState({ project: e.target.value || "" })
+    };
 }
 
 const actionToString = (action: TimerFormAction) => {
