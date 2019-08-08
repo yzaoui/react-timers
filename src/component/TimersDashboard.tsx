@@ -29,7 +29,7 @@ class TimersDashboard extends React.Component<{}, State> {
         return (
             <div className="ui three column centered grid">
                 <div className="column">
-                    <EditableTimerList timers={this.state.timers} onTimerUpdate={this.handleTimerUpdate} />
+                    <EditableTimerList timers={this.state.timers} onTimerUpdate={this.handleTimerUpdate} onTimerDelete={this.handleTimerDelete} />
                     <ToggleableTimerForm onSubmitNewForm={this.handleSubmitNewForm} />
                 </div>
             </div>
@@ -43,6 +43,10 @@ class TimersDashboard extends React.Component<{}, State> {
         const updatedTimer: Timer = Object.assign({}, timerToUpdate, { title: title, project: project });
 
         this.setState({ timers: this.state.timers.map((timer) => timer.id === id ? updatedTimer : timer) });
+    };
+
+    handleTimerDelete = (id: string) => {
+        this.setState({ timers: this.state.timers.filter(timer => timer.id !== id) })
     };
 
     handleSubmitNewForm = (title: string, project: string) => {

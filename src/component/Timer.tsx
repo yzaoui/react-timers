@@ -3,9 +3,10 @@ import React from 'react';
 interface Props {
     timer: Timer;
     onEditClick: () => void;
+    onDeleteClick: () => void;
 }
 
-const Timer: React.FC<Props> = ({ timer, onEditClick }) => (
+const Timer: React.FC<Props> = ({ timer, onEditClick, onDeleteClick }) => (
     <div className="ui centered card">
         <div className="content">
             <div className="header">{timer.title}</div>
@@ -17,7 +18,7 @@ const Timer: React.FC<Props> = ({ timer, onEditClick }) => (
                 <button className="right floated icon compact ui basic button grey" onClick={onEditClick}>
                     <i className="edit icon" />
                 </button>
-                <button className="right floated icon compact ui basic button red">
+                <button className="right floated icon compact ui basic button red" onClick={onDeleteClick}>
                     <i className="trash icon" />
                 </button>
             </div>
