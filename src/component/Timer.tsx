@@ -17,10 +17,10 @@ const Timer: React.FC<TimerProps> = ({ title, project, elapsedms }) => {
                 </div>
                 <div className="extra content">
                     <span className="right floated edit icon">
-                        <i className="edit icon"/>
+                        <i className="edit icon" />
                     </span>
                     <span className="right floated trash icon">
-                        <i className="trash icon"/>
+                        <i className="trash icon" />
                     </span>
                 </div>
             </div>
@@ -28,7 +28,7 @@ const Timer: React.FC<TimerProps> = ({ title, project, elapsedms }) => {
                 Start
             </div>
         </div>
-    )
+    );
 };
 
 const millisecondsToHourMinuteSecond = (ms: number): string => {
