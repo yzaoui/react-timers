@@ -1,18 +1,16 @@
 import React from 'react';
 
-interface TimerProps {
-    title: string;
-    project: string;
-    elapsedms: number;
+interface Props {
+    timer: Timer;
 }
 
-const Timer: React.FC<TimerProps> = ({ title, project, elapsedms }) => (
+const Timer: React.FC<Props> = ({ timer }) => (
     <div className="ui centered card">
         <div className="content">
-            <div className="header">{title}</div>
-            <div className="meta">{project}</div>
+            <div className="header">{timer.title}</div>
+            <div className="meta">{timer.project}</div>
             <div className="center aligned description">
-                <h2>{millisecondsToHourMinuteSecond(elapsedms)}</h2>
+                <h2>{millisecondsToHourMinuteSecond(timer.elapsedms)}</h2>
             </div>
             <div className="extra content">
                 <span className="right floated edit icon">

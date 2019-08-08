@@ -1,6 +1,6 @@
 import React from "react";
 import EditableTimerList from "./EditableTimerList";
-import ToggleableTimerFormProps from "./ToggleableTimerForm";
+import ToggleableTimerForm from "./ToggleableTimerForm";
 
 interface State {
     timers: Timer[];
@@ -29,7 +29,7 @@ class TimersDashboard extends React.Component<{}, State> {
             <div className="ui three column centered grid">
                 <div className="column">
                     <EditableTimerList timers={this.state.timers}/>
-                    <ToggleableTimerFormProps expanded={false} />
+                    <ToggleableTimerForm expanded={false} />
                 </div>
             </div>
         );

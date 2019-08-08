@@ -1,12 +1,12 @@
 import React from "react";
 import { TimerForm, TimerFormAction } from "./TimerForm";
 
-interface ToggleableTimerFormProps {
+interface Props {
     expanded: boolean;
 }
 
-const ToggleableTimerFormProps: React.FC<ToggleableTimerFormProps> = ({ expanded }) => {
-    if (expanded) return <TimerForm title={"New Title"} project={"New Project"} action={TimerFormAction.Create} />;
+const ToggleableTimerForm: React.FC<Props> = ({ expanded }) => {
+    if (expanded) return <TimerForm action={TimerFormAction.Create} />;
     else return (
         <div className="ui basic content center aligned segment">
             <button className="ui basic button icon">
@@ -16,4 +16,4 @@ const ToggleableTimerFormProps: React.FC<ToggleableTimerFormProps> = ({ expanded
     );
 };
 
-export default ToggleableTimerFormProps;
+export default ToggleableTimerForm;
