@@ -1,10 +1,15 @@
 import React from 'react';
 import EditableTimer from "./EditableTimer";
 
-const EditableTimerList: React.FC = () => (
+interface Props {
+    timers: Timer[];
+}
+
+const EditableTimerList: React.FC<Props> = ({ timers }) => (
     <div id="timers">
-        <EditableTimer editTimer={false} title="First Timer" project="Project 1" elapsedms={12345678} />
-        <EditableTimer editTimer={true} title="Second Timer" project="Project 2" elapsedms={3000} />
+        {timers.map((timer) => (
+            <EditableTimer key={timer.id} editTimer={false} title={timer.title} project={timer.project} elapsedms={timer.elapsedms}/>
+        ))}
     </div>
 );
 
