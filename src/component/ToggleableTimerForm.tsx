@@ -1,5 +1,5 @@
 import React from "react";
-import { TimerForm, TimerFormAction } from "./TimerForm";
+import TimerForm, { TimerFormAction } from "./TimerForm";
 
 interface State {
     expanded: boolean;
