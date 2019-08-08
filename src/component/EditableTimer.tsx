@@ -7,16 +7,16 @@ interface Props {
 }
 
 interface State {
-    editTimer: boolean;
+    editing: boolean;
 }
 
 class EditableTimer extends React.Component<Props, State> {
     readonly state: Readonly<State> = {
-        editTimer: false
+        editing: false
     };
 
     render() {
-        if (this.state.editTimer) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} />;
+        if (this.state.editing) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} />;
         else return <Timer timer={this.props.timer} />;
     }
 }
