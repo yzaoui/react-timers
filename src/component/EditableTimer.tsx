@@ -6,6 +6,8 @@ interface Props {
     timer: Timer;
     onTimerUpdate: (title: string, project: string) => void;
     onTimerDelete: () => void;
+    onTimerStart: () => void;
+    onTimerStop: () => void;
 }
 
 interface State {
@@ -18,8 +20,19 @@ class EditableTimer extends React.Component<Props, State> {
     };
 
     render() {
-        if (this.state.editing) return <TimerForm timer={this.props.timer} action={TimerFormAction.Update} onFormSubmit={this.handleFormUpdate} onFormCancel={this.handleFormCancel} />;
-        else return <TimerComponent timer={this.props.timer} onEditClick={this.handleEditClick} onDeleteClick={this.handleDeleteClick} />;
+        if (this.state.editing) return <TimerForm
+            timer={this.props.timer}
+            action={TimerFormAction.Update}
+            onFormSubmit={this.handleFormUpdate}
+            onFormCancel={this.handleFormCancel}
+        />;
+        else return <TimerComponent
+            timer={this.props.timer}
+            onEditClick={this.handleEditClick}
+            onDeleteClick={this.props.onTimerDelete}
+            onStartClick={this.props.onTimerStart}
+            onStopClick={this.props.onTimerStop}
+        />;
     }
 
     handleFormUpdate = (title: string, project: string) => {
@@ -30,8 +43,6 @@ class EditableTimer extends React.Component<Props, State> {
     handleFormCancel = () => this.setState({ editing: false });
 
     handleEditClick = () => this.setState({ editing: true });
-
-    handleDeleteClick = () => this.props.onTimerDelete();
 }
 
 export default EditableTimer;

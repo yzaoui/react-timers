@@ -1,12 +1,28 @@
 import React from 'react';
+import TimerActionButton from "./TimerActionButton";
 
 interface Props {
     timer: Timer;
     onEditClick: () => void;
     onDeleteClick: () => void;
+    onStartClick: () => void;
+    onStopClick: () => void;
 }
 
 class TimerComponent extends React.Component<Props> {
+    forceUpdateInterval: (number | null) = null;
+
+    componentDidMount() {
+        this.forceUpdateInterval = window.setInterval(() => this.forceUpdate(), 50);
+    }
+
+    componentWillUnmount() {
+        if (this.forceUpdateInterval !== null) {
+            clearInterval(this.forceUpdateInterval);
+            this.forceUpdateInterval = null;
+        }
+    }
+
     render() {
         return (
             <div className="ui centered card">
@@ -14,7 +30,7 @@ class TimerComponent extends React.Component<Props> {
                     <div className="header">{this.props.timer.title}</div>
                     <div className="meta">{this.props.timer.project}</div>
                     <div className="center aligned description">
-                        <h2>{millisecondsToHourMinuteSecond(this.props.timer.elapsedms)}</h2>
+                        <h2>{this.timeString}</h2>
                     </div>
                     <div className="extra content ui icon buttons right floated">
                         <button className="right floated icon compact ui basic button grey" onClick={this.props.onEditClick}>
@@ -25,12 +41,26 @@ class TimerComponent extends React.Component<Props> {
                         </button>
                     </div>
                 </div>
-                <div className="ui bottom attached blue basic button">
-                    Start
-                </div>
+                <TimerActionButton timerIsRunning={this.props.timer.runningSince !== null} onStartClick={this.handleStartClick} onStopClick={this.handleStopClick} />
             </div>
         );
     }
+
+    get timeString() {
+        const { elapsedms, runningSince } = this.props.timer;
+
+        let totalElapsedMS = elapsedms;
+
+        if (runningSince !== null) {
+            totalElapsedMS += Date.now() - runningSince;
+        }
+
+        return millisecondsToHourMinuteSecond(totalElapsedMS);
+    }
+
+    handleStartClick = () => this.props.onStartClick();
+
+    handleStopClick = () => this.props.onStopClick();
 }
 
 const millisecondsToHourMinuteSecond = (ms: number): string => {

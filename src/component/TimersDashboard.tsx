@@ -14,13 +14,15 @@ class TimersDashboard extends React.Component<{}, State> {
                 id: UUID(),
                 title: "First Timer",
                 project: "Project 1",
-                elapsedms: 12345678
+                elapsedms: 12345678,
+                runningSince: null
             },
             {
                 id: UUID(),
                 title: "Second Timer",
                 project: "Project 2",
-                elapsedms: 3000
+                elapsedms: 3000,
+                runningSince: null
             }
         ]
     };
@@ -29,7 +31,13 @@ class TimersDashboard extends React.Component<{}, State> {
         return (
             <div className="ui three column centered grid">
                 <div className="column">
-                    <EditableTimerList timers={this.state.timers} onTimerUpdate={this.handleTimerUpdate} onTimerDelete={this.handleTimerDelete} />
+                    <EditableTimerList
+                        timers={this.state.timers}
+                        onTimerUpdate={this.handleTimerUpdate}
+                        onTimerDelete={this.handleTimerDelete}
+                        onTimerStart={this.handleTimerStart}
+                        onTimerStop={this.handleTimerStop}
+                    />
                     <ToggleableTimerForm onSubmitNewForm={this.handleSubmitNewForm} />
                 </div>
             </div>
@@ -37,12 +45,11 @@ class TimersDashboard extends React.Component<{}, State> {
     }
 
     handleTimerUpdate = (id: string, title: string, project: string) => {
-        const timerToUpdate = this.state.timers.find((timer) => timer.id === id);
-        if (timerToUpdate === undefined) throw new Error();
+        const timerToUpdate = this.getTimer(id);
 
-        const updatedTimer: Timer = Object.assign({}, timerToUpdate, { title: title, project: project });
+        const updatedFields: Partial<Timer> = { title: title, project: project };
 
-        this.setState({ timers: this.state.timers.map((timer) => timer.id === id ? updatedTimer : timer) });
+        this.updateTimer(id, Object.assign({}, timerToUpdate, updatedFields));
     };
 
     handleTimerDelete = (id: string) => {
@@ -54,11 +61,45 @@ class TimersDashboard extends React.Component<{}, State> {
             id: UUID(),
             title: title,
             project: project,
-            elapsedms: 0
+            elapsedms: 0,
+            runningSince: null
         };
 
         this.setState({ timers: this.state.timers.concat(newTimer) })
     };
+
+    handleTimerStart = (id: string) => {
+        const now = Date.now();
+
+        const timerToStart = this.getTimer(id);
+
+        const updatedFields: Partial<Timer> = { runningSince: now };
+
+        this.updateTimer(id, Object.assign({}, timerToStart, updatedFields));
+    };
+
+    handleTimerStop = (id: string) => {
+        const now = Date.now();
+
+        const timerToStop = this.getTimer(id);
+
+        if (timerToStop.runningSince === null) throw new Error();
+
+        const timeSinceStart = now - timerToStop.runningSince;
+
+        const updatedFields: Partial<Timer> = { elapsedms: timerToStop.elapsedms + timeSinceStart, runningSince: null };
+
+        this.updateTimer(id, Object.assign({}, timerToStop, updatedFields));
+    };
+
+    getTimer = (id: string) => {
+        const timer = this.state.timers.find((timer) => timer.id === id);
+        if (timer === undefined) throw new Error();
+
+        return timer;
+    };
+
+    updateTimer = (id: string, updatedTimer: Timer) => this.setState({ timers: this.state.timers.map((timer) => timer.id === id ? updatedTimer : timer) });
 }
 
 export default TimersDashboard;
