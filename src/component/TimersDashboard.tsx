@@ -29,7 +29,7 @@ class TimersDashboard extends React.Component<{}, State> {
 
     render() {
         return (
-            <div className="ui three column centered grid">
+            <div className="ui column centered grid">
                 <div className="column">
                     <EditableTimerList
                         timers={this.state.timers}
