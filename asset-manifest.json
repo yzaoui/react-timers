@@ -1,18 +1,26 @@
 {
   "files": {
     "main.css": "/react-timers/static/css/main.323dfbc2.chunk.css",
-    "main.js": "/react-timers/static/js/main.925a6f40.chunk.js",
-    "main.js.map": "/react-timers/static/js/main.925a6f40.chunk.js.map",
-    "runtime~main.js": "/react-timers/static/js/runtime~main.1adcbdba.js",
-    "runtime~main.js.map": "/react-timers/static/js/runtime~main.1adcbdba.js.map",
-    "static/css/2.ec6eeca0.chunk.css": "/react-timers/static/css/2.ec6eeca0.chunk.css",
-    "static/js/2.38837cc7.chunk.js": "/react-timers/static/js/2.38837cc7.chunk.js",
-    "static/js/2.38837cc7.chunk.js.map": "/react-timers/static/js/2.38837cc7.chunk.js.map",
+    "main.js": "/react-timers/static/js/main.6b6fcc82.chunk.js",
+    "main.js.map": "/react-timers/static/js/main.6b6fcc82.chunk.js.map",
+    "runtime-main.js": "/react-timers/static/js/runtime-main.537d2156.js",
+    "runtime-main.js.map": "/react-timers/static/js/runtime-main.537d2156.js.map",
+    "static/css/2.cc20bae5.chunk.css": "/react-timers/static/css/2.cc20bae5.chunk.css",
+    "static/js/2.c4216667.chunk.js": "/react-timers/static/js/2.c4216667.chunk.js",
+    "static/js/2.c4216667.chunk.js.map": "/react-timers/static/js/2.c4216667.chunk.js.map",
     "index.html": "/react-timers/index.html",
-    "precache-manifest.25edf2b742221c80ae50a966f93614f5.js": "/react-timers/precache-manifest.25edf2b742221c80ae50a966f93614f5.js",
+    "precache-manifest.4f28300740a54d62d70badebbe5f4982.js": "/react-timers/precache-manifest.4f28300740a54d62d70badebbe5f4982.js",
     "service-worker.js": "/react-timers/service-worker.js",
-    "static/css/2.ec6eeca0.chunk.css.map": "/react-timers/static/css/2.ec6eeca0.chunk.css.map",
+    "static/css/2.cc20bae5.chunk.css.map": "/react-timers/static/css/2.cc20bae5.chunk.css.map",
     "static/css/main.323dfbc2.chunk.css.map": "/react-timers/static/css/main.323dfbc2.chunk.css.map",
+    "static/js/2.c4216667.chunk.js.LICENSE": "/react-timers/static/js/2.c4216667.chunk.js.LICENSE",
     "static/media/semantic.min.css": "/react-timers/static/media/outline-icons.ef60a4f6.woff"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.537d2156.js",
+    "static/css/2.cc20bae5.chunk.css",
+    "static/js/2.c4216667.chunk.js",
+    "static/css/main.323dfbc2.chunk.css",
+    "static/js/main.6b6fcc82.chunk.js"
+  ]
 }
